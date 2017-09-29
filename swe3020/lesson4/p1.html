@@ -1,0 +1,23 @@
+<html>
+    <head>
+        
+    </head>
+    <body>
+
+        <div onclick="console.log('clicked')">
+            click test
+        </div>
+
+
+
+        <script>
+        // 시간이 엄청 오래걸림. 가장 마지막에 넣는 것이 중요
+        console.log("hello, world","Dd","Ddd",1234,true);
+        </script>
+        <script src="js1.js">
+         // 의존성이 없는 애들은 미리 실행되도록
+         </script>
+        <script>
+        console.log("final:",a)</script>
+    </body>
+</html>
