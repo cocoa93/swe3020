@@ -1,0 +1,37 @@
+<html>
+    <head>
+
+    </head>
+    <body>
+        <script>
+        
+        // 리터럴 - 더이상 쪼갤 수 없는 값의 표현
+        // 숫자 리터럴 1 1.2 0.4 -4 등등
+        // 문자 리터럴 , boolean, null, undefined
+        // 객체 리터럴
+        // 오브젝트 리터럴 {k:v , k:v}
+        // 배열 리터럴{el, el, el .. }
+        // 정규식 리터럴 / 정규식 표현
+        // 함수 리터럴 function[이름](인자) {}
+        
+        //hashmap : hash + map 더 정확하게는 hashfunction을 이용하는 map의 자료구조
+        //hash  -> 숫자가 아닌 것을 숫자로 바꾸는 함수
+        //map-> key와 값이 쌍을 이루는 자료구조. ex 배열 (key:숫자, value:값)
+        //자바스크립트의 key는 무조건 문자. cuz 자바스크립트의 해쉬는 문자->숫자기때문
+        // key 이름은 변수이름규칙을 따름 맨 처음에 0 쓸 수 없음. but 따옴표 안에 넣으면 가능
+        //test[식-> 문자열로 변환함] test[1-1] -> test[0] but 문자열 0임
+        //대활호 연산자를 쓰면 변수의 이름규칙을 어겨도 됨
+
+        var test = {"f":"function","b":"boolean",c:"number","0":"aaa","1":"bbb","2":"ccc","3":"ddd"};
+
+        test.abc=1234;
+        console.log(test.abc, test.f, test.b,test[0],test["0"],test[1-1]);
+        
+        for (var i=0;i<4;i++){
+            console.log(test[i]);
+        }
+
+        </script>
+        
+    </body>
+</html>
