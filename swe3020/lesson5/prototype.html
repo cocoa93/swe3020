@@ -1,0 +1,55 @@
+<html>
+    <head></head>
+    <body>
+        <script>
+        
+        //프로토타임 class system을 대체하기 위해 만들어진 것
+        //클래스 
+
+        var Student = function(name, grade){
+            if (this instanceof Student){
+        this.name = name;
+        this.grade = grade;
+        
+            }else{
+                return new Student(name, grade);
+            }
+        //함수 사용하면 전역변수를 만들어줌
+        };
+
+        var st1 = new Student("홍길동",1);
+        //Student("hika",1);
+        //console.log(name,grade);
+
+        var student = new Student("hika",1);
+        //클래스로 사용하면 전역변수가 아니라 가리키는 대상이 instance로 바뀜 
+    
+        console.log(student.grade);
+        console.log(student instanceof Student);
+        //모든 함수는 클래스의 후보. new와 함께 instance를 생성할 수 있다.
+        //그냥 호출하면 함수로 작동
+
+
+        //함수를 만들면 무조건 프로토타입이 같이 있다.
+
+        Student.prototype.display = function(){
+            console.log(this.name,"::",this.grade);
+        }
+        student.display();
+
+
+        //상속
+
+        var Base = function(){};
+        var Extended = function(){};
+        Extended.prototype = new Base(); // 외워라 ㅡㅡ;;
+
+        //static 함수
+        Extended.action = function(){}
+        
+
+
+
+        </script>
+    </body>
+</html>

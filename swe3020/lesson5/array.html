@@ -76,7 +76,19 @@
                 };
             inner(ola,olb);
             };
-            outer(1,2)
+            outer(1,2);
+
+            var check = 100;
+            var outer2 = function(){
+                var check =50;
+                var inner = function(){
+                    var check = 10;
+                    console.log(check);
+                }
+                inner();
+            }
+            outer2()    
+
 
 
 

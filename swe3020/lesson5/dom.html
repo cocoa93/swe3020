@@ -1,0 +1,74 @@
+<html>
+    <head></head>
+    <body>
+        <p id="test">data</p>
+        <div><div>inner</div></div>
+        <script>
+            
+        //DOM Document Object Model
+        //DOM의 진입점은 'documet object'
+        /*
+        var html = new HTML();
+        var head = new HAED();
+        var body = new BODY();
+        html.appendChild(head);
+        html.appendChild(head);
+
+        var p = new P();
+        var div = new DIV();
+        var div2 = new DIV("inner");
+        div.appendChild(div2);
+        body.appendChild(p);
+        body.appendChild(div);
+
+        body = html.getItem(1);
+        div = body.getItem(1);
+        innerDiv = div.getItem(0);
+        innerDiv.html =='inner';
+        */
+
+        var body = document.body;
+        console.log(body.children[1].children[0].innerHTML)
+        console.log(document.getElementById("test"));
+        console.log(document.getElementsByTagName("div"));
+
+
+        var panel = document.getElementById("test");
+        var log = function(Data){
+            panel.innerHTML = Data;
+        };
+
+        var brightness = function(color){
+            panel.style.backgroundColor = "rgb("+color+","+color+","+color+")";
+        }
+
+        panel.addEventListener("click",function(event){
+            alert("hello")
+        });
+        panel.addEventListener("mouseover",function(event){
+            brightness(200);
+        });
+        panel.addEventListener("mouseout",function(event){
+            brightness(255);
+        });
+
+        //함수를 괄호로 감싸고 바로 실행시킬 수 있음 -> 즉시실행함수  (함수)();
+        //scope를 지정하는 방법이 함수밖에 없다.. 그래서... 이렇게.. 쓴다..
+
+        //BOM -> browser object model
+
+        /*
+        var count = 0;
+        setInterval(function(){
+            if (count<255){
+            log(count++);}
+            else{count = 0;}
+            log(count);
+            brightness(count);
+        },16.6);
+
+        */
+
+        </script>
+    </body>
+</html>
