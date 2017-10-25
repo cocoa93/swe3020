@@ -1,0 +1,30 @@
+<html>
+    <head>
+        <div id="log"></div>
+    <style></style>
+       
+
+    </head>
+    <body>
+
+            <ul>
+                    <li>item</li>
+                    <div>hello world</div>
+                    <li>item</li>
+                    <li>item</li>
+                </ul>
+        <script>
+            var div = document.querySelector("ul >li >div");
+            div.style.color = "blue";
+            var panel = document.getElementById("log");
+            var log = function(v){
+                panel.innerHTML = panel.innerHTML + "<br>"+v;
+            }
+
+            var ul = document.getElementsByTagName("ul")[0];
+            log("children vs childNodes : " +ul.children.length + " , "+ ul.childNodes.length);
+            log("firstElementChild vs firstChild : "+ ul.firstElementChild+ " ,"+ ul.firstChild);
+            log("nextSibling vs nextElementsiblig : "+ul.children[1].nextElementSibling + " ,"+ul.children[1].nextSibling);
+        </script>
+    </body>
+</html> 

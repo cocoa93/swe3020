@@ -1,0 +1,66 @@
+<html>
+        <head>
+        <style>
+            ul > li > div{color:red}
+        </style>
+        
+        </head>
+        <body>
+            <div></div>
+            <ul>
+                <li>item1</li>
+                <li>item2
+                    <div>special item2</div>
+                </li>
+                <li>item3
+                    <div>special item3</div>
+                </li>
+                <li id="test">item4</li>
+                <li>item5</li>
+            </ul>
+            <ul id="imgList">
+            </ul>
+            <img id="dog"/>
+        <script scr="images.js"></script>
+        <script>
+        var list = document.querySelector("#imgList");
+        var display = document.querySelector("#dog");
+        for(var i = 0; i < images.length; i++){
+            //li엘리먼트를 만들어주고
+            //var li = items[i];
+            var li = document.createElement("li");
+            //list에 자식으로 넣어준뒤
+            list.appendChild(li);
+            //개별 li에 name을 넣어주고
+            li.style.cssText = "float:left;margin:0 10px;font-size:20px;color:#a00;cursor:pointer";
+            li.innerHTML = images[i].name;
+            //li에 이벤트를 걸어준다
+            /*잘못된 예제
+            li.onclick = function(){
+                display.src = images[i].data;
+            };
+            */
+            (function(){
+                var src = images[i].data;
+                li.onclick = function(){
+                    //이미지태그의 src를 바꿔준다. src용 값은?
+                    display.src = src;
+                }
+            })()
+            
+        }
+        var div = document.querySelector("ul > li > div");
+        div.style.color = "blue";
+        var divs = document.querySelectorAll("ul > li > div");
+        for(var i = 0; i < divs.length; i++){
+            divs[i].style.background = "grey";
+        }
+        var item4 = document.querySelector("#test");
+        item4.style.color = "#0b0";
+        // 1. 스타일을 변경한다 - element.style.XXX
+        // 2. 속성을 변경한다 - img.src = "aaa.jpg"
+        // 3. 이벤트를 건다 - element.onclick = function(){...}
+        // 4. innerHTML을 사용한다 - div.innerHTML = "hello world"
+        </script>
+        </body>
+        </html>

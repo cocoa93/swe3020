@@ -22,13 +22,13 @@
         //test[식-> 문자열로 변환함] test[1-1] -> test[0] but 문자열 0임
         //대활호 연산자를 쓰면 변수의 이름규칙을 어겨도 됨
 
-        var test = {"f":"function","b":"boolean",c:"number","0":"aaa","1":"bbb","2":"ccc","3":"ddd"};
+        var test = {"f":"function","b":"boolean",c:"number","a0":"aaa","a1":"bbb","a2":"ccc","a3":"ddd"};
 
         test.abc=1234;
         console.log(test.abc, test.f, test.b,test[0],test["0"],test[1-1]);
         
         for (var i=0;i<4;i++){
-            console.log(test[i]);
+            console.log(test["a"+i]);
         }
 
         </script>
