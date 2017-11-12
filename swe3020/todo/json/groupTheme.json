@@ -1,0 +1,16 @@
+{
+    "result":"ok",
+    "data":[
+        {"id":3, "name":"새로운 목록",
+            "color":"green",
+            "icon":"default",
+            "theme":"1"},
+        {"taskId":1, "todo":"할일 1",
+            "isDone":"true",
+            "todaysTask":"false",
+            "dueDate":"Dec 04 2017"}
+            
+    
+    ]
+    
+    }

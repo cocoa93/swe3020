@@ -1,0 +1,23 @@
+{
+    "result":"ok",
+    "data":[
+        {"id":1, "name":"오늘 할 일",
+            "color":"blue",
+            "icon":"sun",
+            "count":1},
+        {"id":2, "name":"To-Do",
+            "color":"red",
+            "icon":"home",
+            "count":0,
+            "sorting":1,
+            "hideIfComplete":false},
+        {"id":3, "name":"새로운 목록",//새로 추가한 목록
+            "color":"green",
+            "icon":"default",
+            "count":1,
+            "sorting":1,
+            "hideIfComplete":false}
+    
+    ]
+    
+    }
