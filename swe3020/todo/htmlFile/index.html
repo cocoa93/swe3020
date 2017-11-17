@@ -1,0 +1,44 @@
+<html>
+    <head>
+        <style>
+        li{
+            list-style-type: none;
+        }
+        </style>
+
+    </head>
+    <body>
+
+        <ul id="list">
+        </ul>
+
+        <script
+        src="https://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous"></script>
+
+        <script>
+    jQuery( document ).ready(function( $ ) {
+      $('body').prepend('<h1>index page</h1>');
+      $.get("https://cocoa93.github.io/swe3020/todo/json/groupList.json",function(data,status){
+          var arr = data.data;
+          var icon;
+          for(i=0;i<arr.length;i++){
+              switch(arr[i].icon){
+                  case ("sun"):
+                  icon='\u263c';
+                  break;
+                  case ("home"):
+                  icon='\u2302';
+                  break;
+                  default:
+                  icon='\u2630';
+                  break;
+              }
+              $('#list').append("<li style='color:"+arr[i].color+";'>"+icon+arr[i].name+"\t\t"+arr[i].count+"</li>\n");
+          }
+      })
+    });
+    </script>
+    </body>
+</html>
