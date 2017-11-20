@@ -1,8 +1,14 @@
 <html>
     <head>
         <style>
-        li{
-            list-style-type: none;
+        .groupDiv{
+            width:300px;
+
+        }
+        .groupDiv:hover{
+            background-color:lightsteelblue;
+            width:300px;
+
         }
         </style>
 
@@ -24,7 +30,7 @@
                 var icon;
                 for(i=0;i<arr.length;i++){
                     icon=findIcon(arr[i]);
-                    $('#list').append("<li style='color:"+arr[i].color+";'>"+icon+arr[i].name+"\t\t"+arr[i].count+"</li>\n");
+                    $('#list').append("<div class='groupDiv' style='color:"+arr[i].color+";'>"+icon+arr[i].name+"\t\t"+arr[i].count+"</div>\n");
                 };
             })};
 
@@ -54,7 +60,7 @@
                 console.log(arr);
                 for(i=0;i<arr.length;i++){
                     icon=findIcon(arr[i]);
-                    $('#list').append("<li style='color:"+arr[i].color+";'>"+icon+arr[i].name+"\t\t"+arr[i].count+"</li>\n");
+                    $('#list').append("<div class='groupDiv' style='color:"+arr[i].color+";'>"+icon+arr[i].name+"\t\t"+arr[i].count+"</div>\n");
                 };
             })
             
@@ -69,11 +75,11 @@
     </script>
 
         <div id="groupList">
-            <ul id="list">
-            </ul>
+            <div id="list">
+            </div>
         </div>
         <div id="bottom">
-            <p id="addList" style="color:blue;" onclick="addListF();">+새 목록</p>
+            <div class='groupDiv'classid="addList" style="color:blue;" onclick="addListF();">+새 목록</div>
         </div>
     </body>
 </html>
