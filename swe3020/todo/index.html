@@ -10,6 +10,17 @@
             width:300px;
 
         }
+        #addList{
+            width:300px;
+        }
+        #addList:hover{
+            background-color:lightsteelblue;
+            width:300px;
+        }
+        #groupCount{
+            color:gray;
+            float: right;
+        }
         </style>
 
         <script
@@ -30,7 +41,10 @@
                 var icon;
                 for(i=0;i<arr.length;i++){
                     icon=findIcon(arr[i]);
-                    $('#list').append("<div class='groupDiv' style='color:"+arr[i].color+";'>"+icon+arr[i].name+"\t\t"+arr[i].count+"</div>\n");
+                    $('#groupList').append("<div class='groupDiv'></div>\n");
+                    $('.groupDiv').last().append("<span id='icon' style='color:"+arr[i].color+";'>"+icon+"</span>"
+                    +"<span id='groupName'>"+arr[i].name+"</span>"+"<span id='groupCount'>"+arr[i].count+"</span>");
+                       
                 };
             })};
 
@@ -60,7 +74,10 @@
                 console.log(arr);
                 for(i=0;i<arr.length;i++){
                     icon=findIcon(arr[i]);
-                    $('#list').append("<div class='groupDiv' style='color:"+arr[i].color+";'>"+icon+arr[i].name+"\t\t"+arr[i].count+"</div>\n");
+                    $('#groupList').append("<div class='groupDiv'></div>\n");
+                    $('.groupDiv').last().append("<span id='icon' style='color:"+arr[i].color+";'>"+icon+"</span>"
+                    +"<span id='groupName'>"+arr[i].name+"</span>"+"<span id='groupCount'>"+arr[i].count+"</span>");
+                       
                 };
             })
             
@@ -75,11 +92,10 @@
     </script>
 
         <div id="groupList">
-            <div id="list">
-            </div>
+
         </div>
         <div id="bottom">
-            <div class='groupDiv'classid="addList" style="color:blue;" onclick="addListF();">+새 목록</div>
+            <div id="addList" style="color:blue;" onclick="addListF();">+새 목록</div>
         </div>
     </body>
 </html>
