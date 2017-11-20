@@ -1,0 +1,79 @@
+<html>
+    <head>
+        <style>
+        li{
+            list-style-type: none;
+        }
+        </style>
+
+        <script
+        src="https://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous">
+        </script>
+
+    </head>
+    <body>
+        
+        <script>
+        function showPage(){
+            var pageUrl="https://cocoa93.github.io/swe3020/todo/json/groupList.json";
+            
+            $.get(pageUrl,function(data,status){
+                var arr = data.data;
+                var icon;
+                for(i=0;i<arr.length;i++){
+                    icon=findIcon(arr[i]);
+                    $('#list').append("<li style='color:"+arr[i].color+";'>"+icon+arr[i].name+"\t\t"+arr[i].count+"</li>\n");
+                };
+            })};
+
+        function findIcon(obj){
+            var icon;
+            switch(obj.icon){
+                        case ("sun"):
+                        icon='\u263c';
+                        break;
+                        case ("home"):
+                        icon='\u2302';
+                        break;
+                        default:
+                        icon='\u2630';
+                        break;
+            }
+            return icon;
+        }
+
+        function addListF(){
+            
+            prompt("새로운 목록의 이름을 입력하세요","");
+            var pageUrl="https://cocoa93.github.io/swe3020/todo/json/groupAdd.json";
+            
+            $.get(pageUrl,function(data,status){
+                var obj = data.data;
+                console.log(obj);
+                /*
+                var icon = findIcon(obj);
+                $('#list').append("<li style='color:"+obj.color+";'>"+icon+obj.name+"\t\t"+obj.count+"</li>\n");
+*/
+            })
+            
+            
+        }
+
+        jQuery( document ).ready(function( $ ) {
+            $('body').prepend('<h1>index page</h1>');
+            showPage();
+        })
+
+    </script>
+
+        <div id="groupList">
+            <ul id="list">
+            </ul>
+        </div>
+        <div id="bottom">
+            <p id="addList" style="color:blue;" onclick="addListF();">+새 목록</p>
+        </div>
+    </body>
+</html>

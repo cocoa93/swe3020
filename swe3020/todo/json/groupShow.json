@@ -1,0 +1,14 @@
+{
+    "result":"ok",
+    "data":[
+        {"id":3, "name":"새로운 목록",
+            "color":"green",
+            "icon":"default",
+            "theme":"default",
+            "sorting":1,
+            "hideIfComplete":true}
+            
+    
+    ]
+    
+    }

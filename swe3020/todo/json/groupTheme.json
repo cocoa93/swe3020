@@ -1,16 +1,76 @@
 {
     "result":"ok",
-    "data":[
-        {"id":3, "name":"새로운 목록",
-            "color":"green",
-            "icon":"default",
-            "theme":"1"},
-        {"taskId":1, "todo":"할일 1",
-            "isDone":"true",
-            "todaysTask":"false",
-            "dueDate":"Dec 04 2017"}
+    "theme":[
+        {
+            "tid":1, 
+            "theme": "mountain",
+            "selected": "True"
+
+        },
+        {
+            "tid":2, 
+            "theme": "campingcar",
+            "selected": "False"
+
+        },
+        {
+            "tid":3, 
+            "theme": "home",
+            "selected": "False"
+
+        },
+        {
+            "tid":4, 
+            "theme": "airplane",
+            "selected": "False"
+
+        },
+        {
+            "tid":5, 
+            "theme": "city",
+            "selected": "False"
+
+        },
+        {
+            "tid":6, 
+            "theme": "none",
+            "selected": "False"
+
+        }
             
     
+    ],
+    "color":[
+        {
+            "id":1, 
+            "theme": "blue",
+            "selected": "True"
+
+        },
+        {
+            "id":2, 
+            "theme": "orange",
+            "selected": "False"
+
+        },
+        {
+            "tid":3, 
+            "theme": "violet",
+            "selected": "False"
+
+        },
+        {
+            "tid":4, 
+            "theme": "green",
+            "selected": "False"
+
+        },
+        {
+            "tid":5, 
+            "theme": "skyblue",
+            "selected": "False"
+
+        }
     ]
     
     }

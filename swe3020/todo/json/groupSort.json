@@ -1,0 +1,22 @@
+{
+    "result":"ok",
+    "data":[
+        {"id":3, "name":"새로운 목록",
+            "color":"green",
+            "icon":"default",
+            "theme":"default",
+            "sorting":2,
+            "hideIfComplete":false},
+        {"taskId":1, "todo":"할일 1",
+            "isDone":"true",
+            "todaysTask":"false",
+            "dueDate":"Dec 04 2017"},
+        {"taskId":2, "todo":"할일 2",
+            "isDone":"true",
+            "todaysTask":"true",
+            "dueDate":"Dec 04 2017"}
+            
+    
+    ]
+    
+    }
