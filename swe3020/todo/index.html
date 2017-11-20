@@ -48,14 +48,14 @@
             
             prompt("새로운 목록의 이름을 입력하세요","");
             var pageUrl="https://cocoa93.github.io/swe3020/todo/json/groupAdd.json";
-            
-            $.get(pageUrl,function(data,status){
-                var obj = data.data;
-                console.log(obj);
-                /*
-                var icon = findIcon(obj);
-                $('#list').append("<li style='color:"+obj.color+";'>"+icon+obj.name+"\t\t"+obj.count+"</li>\n");
-*/
+
+            $.get(pageUrl, function(data,status){
+                var arr = data.data;    
+                console.log(arr);
+                for(i=0;i<arr.length;i++){
+                    icon=findIcon(arr[i]);
+                    $('#list').append("<li style='color:"+arr[i].color+";'>"+icon+arr[i].name+"\t\t"+arr[i].count+"</li>\n");
+                };
             })
             
             
