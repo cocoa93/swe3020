@@ -1,0 +1,54 @@
+<html>
+    <head>
+    
+        <title>list_main</title>
+        <style>
+        #menuIcon{
+            font-size:30;
+            position: fixed;
+            left:10;
+            top:10;
+        }
+        #footer{
+            color: blue;
+            position: fixed;
+            bottom:10px;
+        }
+        </style>
+
+        <script
+        src="https://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous">
+        </script>
+
+   </head>
+   <body>
+       <div id="header">
+            <a href="index.html"><span id="menuIcon">&#9776</span></a>
+       </div>
+       <div id="main"></div>
+       <div id="footer">할 일 추가</div>
+       <script>
+           var ListIdx = window.location.search.substring(0).split("=")[1];
+           console.log(ListIdx);
+       function showPage(){
+        var pageUrl="https://cocoa93.github.io/swe3020/todo/json/taskList.json";
+        
+        $.get(pageUrl,function(data,status){ //두번째 인자에는 보낼 값을 넣어줌
+            var arr = data.data;
+
+            for(i=0;i<arr.length;i++){
+                console.log(arr[i]);
+                if (arr[i].id==ListIdx){
+                $('#main').append("<div class='taskDiv'></div>\n");
+                $('.taskDiv').append("<span id='taskName'>"+arr[i].todo+"</span>");
+                };
+            };
+        })};
+
+        showPage();
+        </script>
+       
+   </body>
+</html>

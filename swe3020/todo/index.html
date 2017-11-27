@@ -1,5 +1,6 @@
 <html>
     <head>
+        <title>index</title>
         <style>
         .groupDiv{
             width:300px;
@@ -21,6 +22,14 @@
             color:gray;
             float: right;
         }
+        a:link{
+            text-decoration: none;
+            color:black;
+        }
+        a:visited{
+            text-decoration: none;
+            color: black;
+        }
         
         </style>
 
@@ -37,14 +46,14 @@
         function showPage(){
             var pageUrl="https://cocoa93.github.io/swe3020/todo/json/groupList.json";
             
-            $.get(pageUrl,function(data,status){
+            $.get(pageUrl,function(data,status){ //두번째 인자에는 보낼 값을 넣어줌
                 var arr = data.data;
                 var icon;
                 for(i=0;i<arr.length;i++){
                     icon=findIcon(arr[i]);
                     $('#groupList').append("<div class='groupDiv'></div>\n");
-                    $('.groupDiv').last().append("<span id='icon' style='color:"+arr[i].color+";'>"+icon+"</span>"
-                    +"<span id='groupName'>"+arr[i].name+"</span>"+"<span id='groupCount'>"+arr[i].count+"</span>");
+                    $('.groupDiv').last().append("<a href='list_main.html?listid="+arr[i].id+"'><span id='icon' style='color:"+arr[i].color+";'>"+icon+"</span>"
+                    +"<span id='groupName'>"+arr[i].name+"</span>"+"<span id='groupCount'>"+arr[i].count+"</span></a>");
                     if (arr[i].count==0){
                         $('span').last().hide()};
                 };
@@ -68,23 +77,24 @@
 
         function addListF(){
             
-            prompt("새로운 목록의 이름을 입력하세요","");
+            var newName = prompt("새로운 목록의 이름을 입력하세요","");
             var pageUrl="https://cocoa93.github.io/swe3020/todo/json/groupAdd.json";
 
-            $.get(pageUrl, function(data,status){
-                var arr = data.data;    
-                console.log(arr);
-                for(i=0;i<arr.length;i++){
-                    icon=findIcon(arr[i]);
-                    $('#groupList').append("<div class='groupDiv'></div>\n");
-                    $('.groupDiv').last().append("<span id='icon' style='color:"+arr[i].color+";'>"+icon+"</span>"
-                    +"<span id='groupName'>"+arr[i].name+"</span>"+"<span id='groupCount'>"+arr[i].count+"</span>");
-                    if (arr[i].count==0){
-                        $('span').last().hide()};
-                
-
+            $.get(pageUrl,{"id":7, "name":newName,"color":"blue","icon":"default","count":0,"sorting":1,"hideIfComplete":false},
+                function(data,status){
+                    var arr = data.data;    
+                    console.log(arr);
+                    for(i=0;i<arr.length;i++){
+                        icon=findIcon(arr[i]);
+                        $('#groupList').append("<a href='list_main.html?listName="+newName+"'><div class='groupDiv'></div>\n");
+                        $('.groupDiv').last().append("<span id='icon' style='color:"+arr[i].color+";'>"+icon+"</span>"
+                        +"<span id='groupName'>"+newName+"</span>"+"<span id='groupCount'>"+arr[i].count+"</span></a>");
+                        if (arr[i].count==0){
+                            $('span').last().hide()};
                     
-                };
+
+                        
+                    };
             })
             
             
