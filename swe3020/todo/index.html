@@ -41,23 +41,46 @@
 
     </head>
     <body>
-        
+        <h1>index page</h1>
+        <div id="groupList"></div>
+        <div id="bottom">
+            <div id="addList" style="color:blue;">+새 목록</div>
+        </div>
+        <script src="main.js"></script>
         <script>
-        function showPage(){
-            var pageUrl="https://cocoa93.github.io/swe3020/todo/json/groupList.json";
-            
-            $.get(pageUrl,function(data,status){ //두번째 인자에는 보낼 값을 넣어줌
-                var arr = data.data;
-                var icon;
-                for(i=0;i<arr.length;i++){
-                    icon=findIcon(arr[i]);
-                    $('#groupList').append("<div class='groupDiv'></div>\n");
-                    $('.groupDiv').last().append("<a href='list_main.html?listid="+arr[i].id+"'><span id='icon' style='color:"+arr[i].color+";'>"+icon+"</span>"
-                    +"<span id='groupName'>"+arr[i].name+"</span>"+"<span id='groupCount'>"+arr[i].count+"</span></a>");
-                    if (arr[i].count==0){
-                        $('span').last().hide()};
-                };
-            })};
+        function renderList($data){
+            var arr = $data.data;
+            var icon;
+            $("#GroupList").empty();
+            for(i=0;i<arr.length;i++){
+                icon=findIcon(arr[i]);
+                $('#groupList').append("<div class='groupDiv'></div>\n");
+                $('.groupDiv').last().append("<a href='list_main.html?listid="+arr[i].id+"'>"+
+                    "<span id='icon' style='color:"+arr[i].color+";'>"+icon+"</span>"+
+                    "<span id='groupName'>"+arr[i].name+"</span>"+
+                    "<span id='groupCount'>"+arr[i].count+"</span></a>");
+                if (arr[i].count==0){
+                    $('span').last().hide()};
+            };
+        };
+
+        var init = (function(){
+            var isInited = false;
+            return function init(){
+                if(isInited) return; else isInited = true;
+                $('#addList').click(function(){
+                    var name = prompt("새 목록 이름을 입력하세요.");
+                    name = name.trim();
+                    if(!name){
+                        alert("할일을 적어주세요.");
+                        return;
+                    }
+                    network("addList", renderList, name);
+                });
+                network("showList", renderList);
+            };
+        })();
+        
 
         function findIcon(obj){
             var icon;
@@ -74,12 +97,13 @@
             }
             return icon;
         }
+        /*
 
         function addListF(){
             
             var newName = prompt("새로운 목록의 이름을 입력하세요","");
             var pageUrl="https://cocoa93.github.io/swe3020/todo/json/groupAdd.json";
-
+            //두번째 인자에는 보낼 값을 넣어줌
             $.get(pageUrl,{"id":7, "name":newName,"color":"blue","icon":"default","count":0,"sorting":1,"hideIfComplete":false},
                 function(data,status){
                     var arr = data.data;    
@@ -98,20 +122,16 @@
             })
             
             
-        }
+        }*/
 
         jQuery( document ).ready(function( $ ) {
-            $('body').prepend('<h1>index page</h1>');
-            showPage();
+           
+           // showPage();
+           init();
+           
         })
 
     </script>
-
-        <div id="groupList">
-
-        </div>
-        <div id="bottom">
-            <div id="addList" style="color:blue;" onclick="addListF();">+새 목록</div>
-        </div>
+        
     </body>
 </html>

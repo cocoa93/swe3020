@@ -1,5 +1,6 @@
 <html>
     <head>
+            <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
         <title>list_main</title>
         <style>
@@ -48,35 +49,28 @@
             <a href="index.html"><span id="menuIcon">&#9776</span></a>
        </div>
        <div id="main">
-           <div id=tasks></div>
-
-           <div id="footer" onclick="addTaskF();">할 일 추가</div>
+           <div id="tasks"></div>
+           <div id="footer">할 일 추가</div>
        </div>
-
+       <script src="main.js"></script>
        <script>
-           var ListIdx = window.location.search.substring(0).split("=")[1];
-           console.log(ListIdx);
+        var ListIdx = window.location.search.substring(0).split("=")[1];
 
-       function showPage(){
-        var pageUrl="https://cocoa93.github.io/swe3020/todo/json/taskList.json";
-        var groupUrl="https://cocoa93.github.io/swe3020/todo/json/groupList.json";
-        
-            $.get(pageUrl,function(data,status){ //두번째 인자에는 보낼 값을 넣어줌
-                var arr = data.data;
-                var check;
-
-
-                $.get(groupUrl,function(data,status){
-                    var groupArr=data.data;
-                    for(i=0;i<groupArr.length;i++){
-                        if (groupArr[i].id==ListIdx){
-                            $("#header").append("<span id=listName>"+groupArr[i].name+"</span>");
-                            break;
-                        };
-                    };
-                });
-
-                for(i=0;i<arr.length;i++){
+        $.get(URLS.prefix+URLS.groupList, function(data,status){
+            var groupArr=data.data;
+            for(i=0;i<groupArr.length;i++){
+                if (groupArr[i].id==ListIdx){
+                    $("#header").append("<span id=listName>"+groupArr[i].name+"</span>");
+                    break;
+                };
+            };
+        });
+ 
+        function renderPage($data){
+            var arr = $data.data;
+            var check;
+            console.log(arr);
+            for(i=0;i<arr.length;i++){
                     if (arr[i].id==ListIdx){
                     if(arr[i].isDone=="true"){
                         check="&#128505;";       
@@ -85,11 +79,33 @@
                         check="&#9744;";
                     }
                     $('#tasks').append("<div class='taskName'>"+"<span class='taskCheck' id="+arr[i].taskId+" onclick='changeIsDone(this.id);'>"+check+"</span>"+arr[i].todo+"</div>");
-                    };
+                    console.log("dd")};
+                    
                 };
-            })
         };
 
+        var init = (function(){
+            var isInited = false;
+            return function init(){
+                if(isInited) return; else isInited = true;
+                $('#footer').click(function(){
+                    var name = prompt("새로운 할 일을 입력하세요.");
+                    name = name.trim();
+                    if(!name){
+                        alert("할일을 입력해주세요.");
+                        return;
+                    }
+                    network("addTask", renderPage,name);
+                });
+                
+                network("showPage", renderPage);
+                
+            };
+        })();
+        
+
+
+        /*
         function addTaskF(){
             
             var newName = prompt("새로운 할일의 이름을 입력하세요","");
@@ -112,30 +128,29 @@
                     };
             })
             
-            
         }
+        */
+
         function changeIsDone(checkId){
             var pageUrl="https://cocoa93.github.io/swe3020/todo/json/taskList.json";
             var text = $("#"+checkId).text()
             $.get(pageUrl,checkId,function(data,status){
                 var arr = data.data;
 
-                if (arr[checkId-1].isDone=="true"){
-                    $('#'+checkId).text('\u2610');
-
-                }
-                else{
-                    $('#'+checkId).text('\u1F5F9');
-                }
-                
-
+                if (arr[checkId-1].isDone=="true") $('#'+checkId).text('\u2610');
+                else $('#'+checkId).text('\u1F5F9');
 
             })
 
             };
     
 
-        showPage();
+        jQuery( document ).ready(function( $ ) {
+        
+        // showPage();
+        init();
+        
+        })
         </script>
        
    </body>
