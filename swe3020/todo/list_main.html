@@ -70,18 +70,32 @@
             var arr = $data.data;
             var check;
             console.log(arr);
-            for(i=0;i<arr.length;i++){
+            for(i=0;i<arr.length;i++){ 
                     if (arr[i].id==ListIdx){
                     if(arr[i].isDone=="true"){
-                        check="&#128505;";       
+                        check="&#10004;";       
                     }
                     else{
                         check="&#9744;";
                     }
                     $('#tasks').append("<div class='taskName'>"+"<span class='taskCheck' id="+arr[i].taskId+" onclick='changeIsDone(this.id);'>"+check+"</span>"+arr[i].todo+"</div>");
-                    console.log("dd")};
                     
                 };
+            };
+        };
+
+        function addTaskF($data){
+            var arr = $data.data;
+            var check;
+            for(i=0;i<arr.length;i++){
+                    if(arr[i].isDone=="true"){
+                        check="&#10004;";       
+                    }
+                    else{
+                        check="&#9744;";
+                    }
+                    $('#tasks').append("<div class='taskName'>"+"<span class='taskCheck' id="+arr[i].taskId+" onclick='changeIsDone(this.id);'>"+check+"</span>"+arr[i].todo+"</div>");
+            };
         };
 
         var init = (function(){
@@ -95,7 +109,7 @@
                         alert("할일을 입력해주세요.");
                         return;
                     }
-                    network("addTask", renderPage,name);
+                    network("addTask", addTaskF,name);
                 });
                 
                 network("showPage", renderPage);
@@ -104,50 +118,21 @@
         })();
         
 
-
-        /*
-        function addTaskF(){
-            
-            var newName = prompt("새로운 할일의 이름을 입력하세요","");
-            var pageUrl="https://cocoa93.github.io/swe3020/todo/json/taskAdd.json";
-
-            $.get(pageUrl,{"taskId":7,"id":ListIdx,"todo":newName,"isDone":"false","todaysTask":"false","dueDate":""},
-                function(data,status){
-                    var arr = data.data;
-                    var check;
-
-                    for(i=0;i<arr.length;i++){
-                        if(arr[i].isDone=="true"){
-                            check="&#128505;";       
-                        }
-                        else{
-                            check="&#9744;";
-                        }
-                        $('#tasks').append("<div class='taskName'><span class='taskCheck' id="+arr[i].taskId+" onclick='changeIsDone(this.id);'>"+check+"</span>"+newName+"</div>");
-                        
-                    };
-            })
-            
-        }
-        */
-
         function changeIsDone(checkId){
             var pageUrl="https://cocoa93.github.io/swe3020/todo/json/taskList.json";
             var text = $("#"+checkId).text()
             $.get(pageUrl,checkId,function(data,status){
                 var arr = data.data;
 
-                if (arr[checkId-1].isDone=="true") $('#'+checkId).text('\u2610');
-                else $('#'+checkId).text('\u1F5F9');
+                if (arr[checkId-1].isDone=="true") $('#'+checkId).text("\u2610");
+                else $('#'+checkId).text("\u2714");
 
             })
 
-            };
+        };
     
 
         jQuery( document ).ready(function( $ ) {
-        
-        // showPage();
         init();
         
         })
